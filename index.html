@@ -9,18 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0B0F14;
-    --card:#131A21;
-    --card-2:#0F151B;
-    --line: rgba(237,243,245,0.08);
-    --frost:#EDF3F5;
-    --muted:#8C9AA3;
-    --cyan:#5FE1DC;
-    --cyan-dim: rgba(95,225,220,0.14);
-    --ember:#FF6B35;
-    --ember-dim: rgba(255,107,53,0.14);
-    --violet:#A78BFA;
-    --violet-dim: rgba(167,139,250,0.14);
+    --ink:#0B0908;
+    --card:#1A1211;
+    --card-2:#130D0C;
+    --line: rgba(240,230,210,0.10);
+    --frost:#F0E6D2;
+    --muted:#B8A98C;
+    --cyan:#D9BE8F;
+    --cyan-dim: rgba(217,190,143,0.14);
+    --ember:#E2263A;
+    --ember-dim: rgba(226,38,58,0.16);
+    --violet:#8B1418;
+    --violet-dim: rgba(139,20,24,0.22);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -31,7 +31,7 @@
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  ::selection{ background:var(--cyan); color:#0B0F14; }
+  ::selection{ background:var(--cyan); color:#0B0908; }
 
   .noise{
     position:fixed; inset:0; pointer-events:none; opacity:0.035; z-index:1;
@@ -71,7 +71,7 @@
     font-size:clamp(40px, 11vw, 64px);
     line-height:0.98;
     letter-spacing:-0.01em;
-    background: linear-gradient(180deg, #FFFFFF 0%, #B9C6CC 100%);
+    background: linear-gradient(180deg, #F5EAD3 0%, #D8C29A 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -84,6 +84,32 @@
     font-size:15.5px;
     line-height:1.55;
   }
+  .ig-cta{
+    position:relative;
+    margin-top:16px;
+    font-family:'Inter',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--frost);
+    opacity:0.9;
+  }
+  .ig-link{
+    position:relative;
+    display:inline-flex; align-items:center; gap:7px;
+    margin-top:9px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    font-weight:600;
+    color:var(--frost);
+    text-decoration:none;
+    border:1px solid var(--line);
+    padding:7px 13px;
+    border-radius:100px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .ig-link svg{ width:15px; height:15px; color:var(--ember); flex-shrink:0; }
+  .ig-link:hover{ border-color: var(--ember); transform: translateY(-1px); }
   .hero .pill-row{
     position:relative;
     margin-top:26px;
@@ -131,7 +157,7 @@
   }
   .seller-opt.active{
     background: var(--cyan);
-    color:#0B0F14;
+    color:#0B0908;
   }
   .seller-opt:hover:not(.active){ color: var(--frost); }
 
@@ -188,7 +214,7 @@
     position:absolute;
     top:12px; right:-34px;
     background: var(--ember);
-    color:#0B0F14;
+    color:#0B0908;
     font-family:'Chakra Petch',sans-serif;
     font-weight:700;
     font-size:11px;
@@ -231,7 +257,7 @@
     flex-shrink:0;
     font-family:'Inter',sans-serif;
     font-weight:600; font-size:13px;
-    color:#0B0F14;
+    color:#0B0908;
     background: var(--ember);
     padding:10px 16px;
     border-radius:10px;
@@ -263,17 +289,17 @@
 
   .card .shot{
     position:relative;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4/2.6;
     background:
       radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.05), transparent 60%),
       #0A0E12;
     display:flex; align-items:center; justify-content:center;
-    padding: 14px;
+    padding: 6px;
   }
   .card .shot img{
     max-width:100%; max-height:100%;
+    width:auto; height:100%;
     object-fit:contain;
-    filter: drop-shadow(0 12px 20px rgba(0,0,0,0.45));
   }
 
   .puffs-tag{
@@ -321,7 +347,27 @@
     border:1px solid var(--line);
     color:var(--frost);
     opacity:0.88;
+    cursor:pointer;
+    font-family:inherit;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
   }
+  .chip-wa-icon{ width:11px; height:11px; flex-shrink:0; opacity:0.7; }
+  .card[data-brand="ignite"] .chip-wa-icon{ color: var(--ember); }
+  .card[data-brand="elfbar"] .chip-wa-icon{ color: var(--violet); }
+  .card[data-brand="nikbar"] .chip-wa-icon{ color: var(--cyan); }
+  .flavor-chip:hover .chip-wa-icon{ opacity:1; }
+  .flavor-chip:hover{
+    opacity:1;
+    background: rgba(255,255,255,0.09);
+    transform: translateY(-1px);
+  }
+  .flavor-chip:active{ transform: scale(0.96); }
+  .card[data-brand="ignite"] .flavor-chip:hover{ border-color: var(--ember); }
+  .card[data-brand="elfbar"] .flavor-chip:hover{ border-color: var(--violet); }
+  .card[data-brand="nikbar"] .flavor-chip:hover{ border-color: var(--cyan); }
 
   .card .footer{
     margin-top:auto;
@@ -340,7 +386,7 @@
     display:inline-flex; align-items:center; gap:7px;
     font-family:'Inter',sans-serif;
     font-weight:600; font-size:13px;
-    color:#0B0F14;
+    color:#0B0908;
     background: var(--cyan);
     padding:10px 14px;
     border-radius:10px;
@@ -375,7 +421,7 @@
     margin-top:18px;
     font-family:'Chakra Petch',sans-serif;
     font-weight:600; font-size:15px;
-    color:#0B0F14;
+    color:#0B0908;
     background: linear-gradient(90deg, var(--cyan), #8FE9E5);
     padding:14px 22px;
     border-radius:12px;
@@ -411,6 +457,11 @@
   <div class="eyebrow"><span class="dot"></span> IBIRAPITANGA E REGIÃO</div>
   <h1 class="brand">Catálogo<br>de Vapes</h1>
   <p class="sub">Descartáveis originais, prontos pra entrega. Escolhe o sabor e chama no WhatsApp — sem enrolação.</p>
+  <div class="ig-cta">Acompanhe novidades e promoções no Instagram 👇🏽</div>
+  <a class="ig-link" href="https://www.instagram.com/smokestore.01?stkn=MWJ0YmQ3N3BwdDZuZg==" target="_blank" rel="noopener" aria-label="Seguir Smoke Store no Instagram">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    @smokestore.01
+  </a>
   <div class="pill-row">
     <span class="pill">4 modelos</span>
     <span class="pill">Entrega local</span>
@@ -432,9 +483,9 @@
   <path d="M0,32 C120,10 200,54 340,30 C480,6 560,50 700,28 C820,10 900,46 1000,24" fill="none" stroke="url(#wgrad)" stroke-width="1.2" opacity="0.5"/>
   <defs>
     <linearGradient id="wgrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#5FE1DC"/>
-      <stop offset="50%" stop-color="#A78BFA"/>
-      <stop offset="100%" stop-color="#FF6B35"/>
+      <stop offset="0%" stop-color="#D9BE8F"/>
+      <stop offset="50%" stop-color="#8B1418"/>
+      <stop offset="100%" stop-color="#E2263A"/>
     </linearGradient>
   </defs>
 </svg>
@@ -455,19 +506,15 @@
       <div class="body">
         <h3>Ignite V155 Ultra Slim</h3>
         <div class="meter">
-          <div class="track"><div class="fill" style="width:20%; --fill-color:#FF6B35"></div></div>
+          <div class="track"><div class="fill" style="width:20%; --fill-color:#E2263A"></div></div>
           <span class="label">slim</span>
         </div>
         <div class="flavors">
-          <span class="flavor-chip">Grape Ice 🍇</span>
-          <span class="flavor-chip">Icy Mint 🌿</span>
+          <button type="button" class="flavor-chip" data-product="Ignite V155 Ultra Slim" data-flavor="Grape Ice 🍇" aria-label="Pedir Ignite V155 Ultra Slim sabor Grape Ice 🍇 no WhatsApp">Grape Ice 🍇<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
+          <button type="button" class="flavor-chip" data-product="Ignite V155 Ultra Slim" data-flavor="Icy Mint 🌿" aria-label="Pedir Ignite V155 Ultra Slim sabor Icy Mint 🌿 no WhatsApp">Icy Mint 🌿<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
         </div>
         <div class="footer">
           <div class="price">R$ 140<small>,00</small></div>
-          <a class="btn-wa" href="#" data-product="Ignite V155 Ultra Slim" aria-label="Pedir Ignite V155 no WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg>
-            Pedir
-          </a>
         </div>
       </div>
     </article>
@@ -481,8 +528,8 @@
   <path d="M0,24 C120,46 200,2 340,26 C480,50 560,6 700,26 C820,44 900,8 1000,30" fill="none" stroke="url(#wgrad2)" stroke-width="1.2" opacity="0.5"/>
   <defs>
     <linearGradient id="wgrad2" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#A78BFA"/>
-      <stop offset="100%" stop-color="#5FE1DC"/>
+      <stop offset="0%" stop-color="#8B1418"/>
+      <stop offset="100%" stop-color="#D9BE8F"/>
     </linearGradient>
   </defs>
 </svg>
@@ -503,19 +550,15 @@
       <div class="body">
         <h3>Elf Bar TE 30k</h3>
         <div class="meter">
-          <div class="track"><div class="fill" style="width:60%; --fill-color:#A78BFA"></div></div>
+          <div class="track"><div class="fill" style="width:60%; --fill-color:#8B1418"></div></div>
           <span class="label">30K</span>
         </div>
         <div class="flavors">
-          <span class="flavor-chip">Miami Mint 🌴</span>
-          <span class="flavor-chip">Strawberry Ice 🍓</span>
+          <button type="button" class="flavor-chip" data-product="Elf Bar TE 30k" data-flavor="Miami Mint 🌴" aria-label="Pedir Elf Bar TE 30k sabor Miami Mint 🌴 no WhatsApp">Miami Mint 🌴<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
+          <button type="button" class="flavor-chip" data-product="Elf Bar TE 30k" data-flavor="Strawberry Ice 🍓" aria-label="Pedir Elf Bar TE 30k sabor Strawberry Ice 🍓 no WhatsApp">Strawberry Ice 🍓<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
         </div>
         <div class="footer">
           <div class="price">R$ 150<small>,00</small></div>
-          <a class="btn-wa" href="#" data-product="Elf Bar TE 30k" aria-label="Pedir Elf Bar TE 30k no WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg>
-            Pedir
-          </a>
         </div>
       </div>
     </article>
@@ -528,19 +571,15 @@
       <div class="body">
         <h3>Elf Bar Duke 35k</h3>
         <div class="meter">
-          <div class="track"><div class="fill" style="width:35%; --fill-color:#A78BFA"></div></div>
+          <div class="track"><div class="fill" style="width:35%; --fill-color:#8B1418"></div></div>
           <span class="label">35k</span>
         </div>
         <div class="flavors">
-          <span class="flavor-chip">Pineapple Ice 🍍</span>
-          <span class="flavor-chip">Blueberry Ice 🫐</span>
+          <button type="button" class="flavor-chip" data-product="Elf Bar Duke 35k" data-flavor="Pineapple Ice 🍍" aria-label="Pedir Elf Bar Duke 35k sabor Pineapple Ice 🍍 no WhatsApp">Pineapple Ice 🍍<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
+          <button type="button" class="flavor-chip" data-product="Elf Bar Duke 35k" data-flavor="Blueberry Ice 🫐" aria-label="Pedir Elf Bar Duke 35k sabor Blueberry Ice 🫐 no WhatsApp">Blueberry Ice 🫐<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
         </div>
         <div class="footer">
           <div class="price">R$ 160<small>,00</small></div>
-          <a class="btn-wa" href="#" data-product="Elf Bar Duke 35k" aria-label="Pedir Elf Bar Duke 35k no WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg>
-            Pedir
-          </a>
         </div>
       </div>
     </article>
@@ -555,8 +594,8 @@
   <path d="M0,30 C130,8 210,52 350,28 C500,4 580,48 720,26 C830,8 910,44 1000,22" fill="none" stroke="url(#wgrad3)" stroke-width="1.2" opacity="0.5"/>
   <defs>
     <linearGradient id="wgrad3" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#5FE1DC"/>
-      <stop offset="100%" stop-color="#A78BFA"/>
+      <stop offset="0%" stop-color="#D9BE8F"/>
+      <stop offset="100%" stop-color="#8B1418"/>
     </linearGradient>
   </defs>
 </svg>
@@ -577,20 +616,16 @@
       <div class="body">
         <h3>Nikbar 10k</h3>
         <div class="meter">
-          <div class="track"><div class="fill" style="width:10%; --fill-color:#5FE1DC"></div></div>
+          <div class="track"><div class="fill" style="width:10%; --fill-color:#D9BE8F"></div></div>
           <span class="label">10k</span>
         </div>
         <div class="flavors">
-          <span class="flavor-chip">Strawberry Ice 🍓</span>
-          <span class="flavor-chip">Icy Mint 🌿</span>
-          <span class="flavor-chip">Sakura Grape 🌸🍇</span>
+          <button type="button" class="flavor-chip" data-product="Nikbar 10k" data-flavor="Strawberry Ice 🍓" aria-label="Pedir Nikbar 10k sabor Strawberry Ice 🍓 no WhatsApp">Strawberry Ice 🍓<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
+          <button type="button" class="flavor-chip" data-product="Nikbar 10k" data-flavor="Icy Mint 🌿" aria-label="Pedir Nikbar 10k sabor Icy Mint 🌿 no WhatsApp">Icy Mint 🌿<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
+          <button type="button" class="flavor-chip" data-product="Nikbar 10k" data-flavor="Sakura Grape 🌸🍇" aria-label="Pedir Nikbar 10k sabor Sakura Grape 🌸🍇 no WhatsApp">Sakura Grape 🌸🍇<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg></button>
         </div>
         <div class="footer">
           <div class="price">R$ 120<small>,00</small></div>
-          <a class="btn-wa" href="#" data-product="Nikbar 10k" aria-label="Pedir Nikbar 10k no WhatsApp">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.08L2 22l5.05-1.32A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.76 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.94.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.15-.27.34-.39.46-.13.13-.27.27-.11.53.15.27.68 1.12 1.46 1.81 1 .89 1.85 1.16 2.11 1.29.27.13.42.11.58-.07.16-.18.67-.78.85-1.05.18-.27.35-.22.6-.13.24.09 1.55.73 1.82.87.27.13.44.2.51.31.07.11.07.62-.15 1.23z"/></svg>
-            Pedir
-          </a>
         </div>
       </div>
     </article>
@@ -615,20 +650,24 @@
   let currentSeller = 'arlisson';
   try { currentSeller = localStorage.getItem('vendedor') || 'arlisson'; } catch(e) {}
 
-  function waLink(product){
+  function waLink(product, flavor){
     const number = SELLERS[currentSeller] || SELLERS.arlisson;
-    const msg = `Oi! Vim pelo catálogo e quero pedir: ${product}`;
+    const msg = flavor
+      ? `Oi! Vim pelo catálogo e quero pedir: ${product} - sabor ${flavor}`
+      : `Oi! Vim pelo catálogo e quero pedir: ${product}`;
     return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
   }
 
   function refreshLinks(){
-    document.querySelectorAll('.btn-wa').forEach(btn => {
-      btn.href = waLink(btn.dataset.product);
-      btn.target = "_blank";
-      btn.rel = "noopener";
-    });
     document.getElementById('waFallback').href = waLink("(sem produto específico)");
   }
+
+  document.querySelectorAll('.flavor-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const url = waLink(chip.dataset.product, chip.dataset.flavor);
+      window.open(url, '_blank', 'noopener');
+    });
+  });
 
   function setSeller(seller){
     currentSeller = seller;
