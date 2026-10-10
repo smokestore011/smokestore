@@ -603,6 +603,7 @@
     .cart-fab{ width:52px; height:52px; bottom:16px; right:16px; }
     .cart-fab svg{ width:23px; height:23px; }
   }
+.item-num{ display:inline-block; margin-left:8px; padding:2px 7px; border-radius:6px; border:1px solid var(--line); color:var(--muted); font-size:11px; font-weight:600; letter-spacing:.04em; vertical-align:middle; font-family:inherit; }
 </style>
 </head>
 <body>
@@ -619,7 +620,7 @@
     @smokestore.01
   </a>
   <div class="pill-row">
-    <span class="pill">9 modelos</span>
+    <span class="pill">8 modelos</span>
     <span class="pill">Entrega local</span>
     <span class="pill">Pagamento na entrega</span>
   </div>
@@ -676,7 +677,6 @@
           <span class="label">Ultra</span>
         </div>
         <div class="flavors">
-          <button type="button" class="flavor-chip" data-product="Ignite V155 Ultra Slim" data-flavor="Grape Ice 🍇" aria-label="Pedir Ignite V155 Ultra Slim sabor Grape Ice 🍇 no WhatsApp">Grape Ice 🍇<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
           <button type="button" class="flavor-chip" data-product="Ignite V155 Ultra Slim" data-flavor="Icy Mint 🌿" aria-label="Pedir Ignite V155 Ultra Slim sabor Icy Mint 🌿 no WhatsApp">Icy Mint 🌿<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
         </div>
         <div class="footer">
@@ -698,7 +698,6 @@
         </div>
         <div class="flavors">
           <button type="button" class="flavor-chip" data-product="Ignite V500 50k" data-flavor="Cool Menthol 🌬️" aria-label="Pedir Ignite V500 50k sabor Cool Menthol 🌬️ no WhatsApp">Cool Menthol 🌬️<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-          <button type="button" class="flavor-chip" data-product="Ignite V500 50k" data-flavor="Icy Mint 🌿" aria-label="Pedir Ignite V500 50k sabor Icy Mint 🌿 no WhatsApp">Icy Mint 🌿<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
         </div>
         <div class="footer">
           <div class="price">R$ 200<small>,00</small></div>
@@ -823,7 +822,7 @@
           <button type="button" class="flavor-chip" data-product="Nikbar 12k" data-flavor="Menthol 🌬️" aria-label="Pedir Nikbar 12k sabor Menthol 🌬️ no WhatsApp">Menthol 🌬️<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
         </div>
         <div class="footer">
-          <div class="price">R$ 120<small>,00</small></div>
+          <div class="price">R$ 130<small>,00</small></div>
         </div>
       </div>
     </article>
@@ -883,32 +882,6 @@
   </div>
 </section>
 
-<!-- TABACARIA -->
-<section class="brand-section">
-  <div class="brand-head tabacaria">
-    <h2>Tabacaria</h2>
-    <span class="count">1 modelo</span>
-  </div>
-  <div class="grid">
-
-    <article class="card" data-brand="tabacaria">
-      <div class="shot shot-placeholder">
-        <span class="puffs-tag">Sedas</span>
-        <div class="placeholder-icon">🚬</div>
-      </div>
-      <div class="body">
-        <h3>Seda Zomo</h3>
-        <div class="flavors">
-          <button type="button" class="flavor-chip" data-product="Seda Zomo" data-flavor="Pacote com 3 unidades" aria-label="Adicionar Seda Zomo - pacote com 3 unidades ao pedido">Pacote com 3<svg class="chip-wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-        </div>
-        <div class="footer">
-          <div class="price">R$ 10<small>,00</small> <span class="price-note">(3 unidades)</span></div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
 
 <footer>
   <div class="fnote">Produto vendido apenas para maiores de 18 anos.</div>
@@ -942,7 +915,7 @@
 
 <script>
   const SELLERS = {
-    arlisson: "5573981917851",
+    arlisson: "5573999528308",
     lazaro: "5573981454537",
   };
 
@@ -1045,11 +1018,29 @@
     });
   }
 
+  // Numera os itens do catálogo (Item 1, Item 2...) na ordem em que aparecem
+  const ITEM_NUM = {};
+  document.querySelectorAll('.card h3').forEach((h3, i) => {
+    const name = h3.textContent.trim();
+    ITEM_NUM[name] = i + 1;
+    const tag = document.createElement('span');
+    tag.className = 'item-num';
+    tag.textContent = 'Item ' + (i + 1);
+    h3.appendChild(tag);
+  });
+
+  function cleanFlavor(f){
+    return (f || '').replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, '').trim();
+  }
+
   function buildOrderMessage(){
-    let msg = 'Oi! Vim pelo catálogo e quero fazer esse pedido:\n\n';
+    let msg = 'Oi! Vim pelo catálogo, quero:\n\n';
     cart.forEach(item => {
-      const flavorPart = item.flavor ? ` - sabor ${item.flavor}` : '';
-      msg += `• ${item.qty}x ${item.product}${flavorPart}\n`;
+      const num = ITEM_NUM[item.product];
+      const label = num ? 'Item ' + num : 'Item';
+      const fl = cleanFlavor(item.flavor);
+      const flavorPart = fl ? ` - ${fl}` : '';
+      msg += `• ${item.qty}x ${label}${flavorPart}\n`;
     });
     return msg;
   }
