@@ -109,7 +109,7 @@ const PRODUTOS = [
       "Bubbaloo Grape 🍇",
       // "Strawmelon Peach 🍉🍑",   (esgotado em 16/10)
     ],
-    ativo: true,
+    ativo: false,
   },
 
   // ----- NIKBAR -----
@@ -898,7 +898,7 @@ window.addEventListener("DOMContentLoaded", function(){
       `<button type="button" class="flavor-chip" data-product="${esc(p.nome)}" data-flavor="${esc(s)}" aria-label="Adicionar ${esc(p.nome)} sabor ${esc(s)} ao pedido">${esc(s)}${PLUS}</button>`
     ).join('');
     const obs = p.obs ? ` <span class="price-note">${esc(p.obs)}</span>` : '';
-    return `<article class="card" style="--brand:${cor}">${shot}<div class="body"><h3>${esc(p.nome)}<span class="item-num">Item ${ITEM_NUM[p.nome]}</span></h3>${meter}<div class="flavors">${chips}</div><div class="footer"><div class="price">${precoHtml(p.preco)}${obs}</div></div></div></article>`;
+    return `<article class="card" style="--brand:${cor}">${shot}<div class="body"><h3>${esc(p.nome)}</h3>${meter}<div class="flavors">${chips}</div><div class="footer"><div class="price">${precoHtml(p.preco)}${obs}</div></div></div></article>`;
   }
 
   (function renderCatalogo(){
